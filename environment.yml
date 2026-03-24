@@ -4,6 +4,4 @@ channels:
   - https://repo.prefix.dev/conda-forge
 dependencies:
   - xeus-python
-  - jupyterlite-xeus
-  - pip:
-    - pyvims >= 1.0.5
+  - pyvims >= 1.1
