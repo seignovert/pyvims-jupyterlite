@@ -1,0 +1,9 @@
+name: pyvims-jupyterlite
+channels:
+  - https://repo.prefix.dev/emscripten-forge-dev
+  - https://repo.prefix.dev/conda-forge
+dependencies:
+  - xeus-python
+  - jupyterlite-xeus
+  - pip:
+    - pyvims >= 1.0.5
