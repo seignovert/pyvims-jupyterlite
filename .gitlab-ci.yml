@@ -1,0 +1,20 @@
+variables:
+  PYTHON_VERSION: 3.14
+  UV_LINK_MODE: copy
+  UV_CACHE_DIR: "$CI_PROJECT_DIR/.uv-cache"
+
+cache:
+  key: "${CI_JOB_NAME}"
+  paths:
+    - .uv-cache
+
+image:
+  name: ghcr.io/astral-sh/uv:python$PYTHON_VERSION-alpine
+  entrypoint: [""]
+
+pages:
+  script:
+    - uv run jupyter lite build --base-url $CI_PAGES_URL
+  artifacts:
+    paths:
+      - public
