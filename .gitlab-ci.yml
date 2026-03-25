@@ -1,20 +1,15 @@
-variables:
-  PYTHON_VERSION: 3.14
-  UV_LINK_MODE: copy
-  UV_CACHE_DIR: "$CI_PROJECT_DIR/.uv-cache"
+image: mambaorg/micromamba:alpine
 
 cache:
-  key: "${CI_JOB_NAME}"
   paths:
-    - .uv-cache
-
-image:
-  name: ghcr.io/astral-sh/uv:python$PYTHON_VERSION-alpine
-  entrypoint: [""]
+    - $MAMBA_ROOT_PREFIX
 
 pages:
+  before_script:
+    - micromamba create -y -n jupyterlite python=3.13 pip
+    - micromamba run -n jupyterlite pip install .
   script:
-    - uv run jupyter lite build --base-url $CI_PAGES_URL
+    - micromamba run -n jupyterlite jupyter lite build --base-url $CI_PAGES_URL
   artifacts:
     paths:
       - public
